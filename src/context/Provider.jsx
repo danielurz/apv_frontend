@@ -13,7 +13,7 @@ export const Provider = ({children}) => {
       if (!token) return setCargando(false)
 
       try {
-         const url = "http://localhost:4000/vet/perfil"
+         const url = `${import.meta.env.VITE_API_URL}/vet/perfil`
          const response = await fetch(url, {
             method: "GET",
             headers: {

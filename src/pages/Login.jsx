@@ -20,7 +20,7 @@ function Login() {
         if ([email,password].includes("")) return toast.error("Completa ambos campos")
 
         try {
-            const url = "http://localhost:4000/vet/login"
+            const url = `${import.meta.env.VITE_API_URL}/vet/login`
             const response = await fetch(url, {
                 method: "POST",
                 body: JSON.stringify({email,password}),
