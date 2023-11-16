@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@600&family=Ubuntu&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Ubuntu';
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+ul {
+    list-style-type: none;
+}
+
+$indico: #5514b6;
+
+#Login, #Registrar, #OlvidePassword, #NuevoPassword {
+    margin: 100px auto 0 auto;
+    width: 80%;
+    display: flex;
+    .enun {
+        width: 40%;
+        p {
+            font-family: 'Outfit' !important;
+            font-weight: 600;
+            font-size: 4.5em;
+            line-height: 1em;
+            span {
+                color: $indico;
+            }
+        }
+    }
+    .formBox {
+        width: 60%;
+        form {
+            width: 70%;
+            margin: auto;
+            .field {
+                margin-bottom: 15px;
+                label {
+                    display: block;
+                    font-weight: bold;
+                    font-size: 1.2em;
+                    margin-bottom: 10px;
+                }
+                input {
+                    display: block;
+                    width: 100%;
+                    background-color: #f3f3f3;
+                    padding: 12px;
+                    border-radius: 10px;
+                    border: none;
+                    font-size: 1.1em;
+                }
+            }
+            .smtBtn {
+                margin-top: 15px;
+                padding: 10px 30px;
+                border-radius: 10px;
+                font-weight: bold;
+                font-size: 1.2em;
+                color: white;
+                background-color: $indico;
+                border: none;
+                cursor: pointer;
+            }
+        }
+        nav {
+            margin-top: 15px;
+            & > * {
+                padding: 2px 0;
+                display: block;
+                text-align: right;
+            }
+        }
+    }
+}
