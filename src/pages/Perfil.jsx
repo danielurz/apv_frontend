@@ -18,6 +18,8 @@ function Perfil() {
         if (VALUES.includes("")) return toast.error("Todos los campos son obligatotios")
 
         try {
+            const toastLoading = toast.loading("Loging in...")
+            
             const url = `${import.meta.env.VITE_API_URL}/actualizar-datos/${userData._id}`
             const response = await fetch(url, {
                 method: "PUT",
@@ -26,7 +28,9 @@ function Perfil() {
                     "Content-Type": "application/json"
                 }
             }).then(res => res.json())
-
+            
+            toast.dismiss(toastLoading)
+            
             if (response?.error) return toast.error(response.error)
             if (response?.serverError) return toast.error(`Server Error: ${response.serverError}`)
 

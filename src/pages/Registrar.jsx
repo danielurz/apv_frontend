@@ -20,6 +20,8 @@ function Registrar() {
 
 
     try {
+      const toastLoading = toast.loading("Creating user...")
+      
       const url = `${import.meta.env.VITE_API_URL}/vet/`
       const response = await fetch(url, {
         method: "POST",
@@ -28,6 +30,8 @@ function Registrar() {
           "Content-Type": "application/json"
         }
       }).then(res => res.json())
+      
+      toast.dismiss(toastLoading)
 
       if (response?.error) return toast.error(response.error)
       if (response?.serverError) return toast.error(`Server error: ${response.serverError}`)

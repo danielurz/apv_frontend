@@ -20,6 +20,8 @@ function Login() {
         if ([email,password].includes("")) return toast.error("Completa ambos campos")
 
         try {
+            const toastLoading = toast.loading("Loging in...")
+
             const url = `${import.meta.env.VITE_API_URL}/vet/login`
             const response = await fetch(url, {
                 method: "POST",
@@ -28,6 +30,8 @@ function Login() {
                     "Content-Type": "application/json"
                 }
             }).then(res => res.json())
+
+            toast.dismiss(toastLoading)
 
             if (response?.error) return toast.error(response.error)
             if (response?.serverError) return toast.error(`Server Error: ${response.serverError}`)
