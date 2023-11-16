@@ -10,7 +10,7 @@ function ConfirmarCuenta() {
   useEffect(() => {
     if (!isValid) {
       try {
-        const url = `http://localhost:4000/vet/confirmar-cuenta/${token}`
+        const url = `${import.meta.env.VITE_API_URL}/vet/confirmar-cuenta/${token}`
         fetch(url)
         .then(res => res.json())
         .then(response => {

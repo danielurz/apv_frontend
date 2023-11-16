@@ -18,7 +18,7 @@ function Perfil() {
         if (VALUES.includes("")) return toast.error("Todos los campos son obligatotios")
 
         try {
-            const url = `http://localhost:4000/vet/actualizar-datos/${userData._id}`
+            const url = `${import.meta.env.VITE_API_URL}/actualizar-datos/${userData._id}`
             const response = await fetch(url, {
                 method: "PUT",
                 body: JSON.stringify(veterinario),

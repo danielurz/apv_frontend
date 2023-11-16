@@ -13,7 +13,7 @@ function OlvidePassword() {
         if (email === "") return toast.error("Llena el campo")
 
         try {
-            const url = "http://localhost:4000/vet/olvido-password"
+            const url = `${import.meta.env.VITE_API_URL}/vet/olvido-password`
             const response = await fetch(url, {
                 method: "POST",
                 headers: {

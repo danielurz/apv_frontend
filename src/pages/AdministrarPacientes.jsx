@@ -12,7 +12,7 @@ function AdministrarPacientes() {
 
   const obtenerPacientes = async () => {
     try {
-      const url = `http://localhost:4000/pac/${userData._id}`
+      const url = `${import.meta.env.VITE_API_URL}/pac/${userData._id}`
       const response = await fetch(url).then(res => res.json())
 
       if (response?.serverError) return console.log(response.serverError)

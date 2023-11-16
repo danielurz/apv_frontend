@@ -16,7 +16,7 @@ function Formulario({setPacientes,pacientes,setPaciente,paciente}) {
             if (values.length < 5 || values.includes("")) return toast.error("Todos los campos son obligatorios")
 
             try {
-                const url = "http://localhost:4000/pac"
+                const url = `${import.meta.env.VITE_API_URL}/pac`
                 const response = await fetch(url, {
                     method: "POST",
                     body: JSON.stringify({...paciente,veterinarioId:userData._id}),
@@ -44,7 +44,7 @@ function Formulario({setPacientes,pacientes,setPaciente,paciente}) {
             if (values.includes("")) return toast.error("Todos los campos son obligatorios")
 
             try {
-                const url = `http://localhost:4000/pac/${userData._id}`
+                const url = `${import.meta.env.VITE_API_URL}/pac/${userData._id}`
                 const response = await fetch(url, {
                     method: "PUT",
                     body: JSON.stringify(paciente),

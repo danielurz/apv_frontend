@@ -23,7 +23,7 @@ function CambiarPassword() {
         if (newPassword !== repeatPassword) return toast.error("Los passwords no coinciden")
 
         try {
-            const url = `http://localhost:4000/vet/actualizar-password/${userData._id}`
+            const url = `${import.meta.env.VITE_API_URL}/vet/actualizar-password/${userData._id}`
             const response = await fetch(url, {
                 method: "PUT",
                 body: JSON.stringify({password: actualPassword, newPassword}),

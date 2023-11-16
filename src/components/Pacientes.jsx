@@ -9,7 +9,7 @@ function Pacientes({pacientes,setPacientes,userData,setPaciente}) {
     if (!confirmar) return
 
     try {
-      const url = `http://localhost:4000/pac/${pacId}/${userData._id}`
+      const url = `${import.meta.env.VITE_API_URL}/pac/${pacId}/${userData._id}`
       const response = await fetch(url, {method:"DELETE"}).then(res => res.json())
 
       if (response?.error) return toast.error(response.error)

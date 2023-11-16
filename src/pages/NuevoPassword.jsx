@@ -20,7 +20,7 @@ function NuevoPassword() {
         if (password !== rpassword) return toast.error("Los passwords no coinciden")
 
         try {
-            const url = `http://localhost:4000/vet/nuevo-password/${token}`
+            const url = `${import.meta.env.VITE_API_URL}/vet/nuevo-password/${token}`
             const response = await fetch(url, {
                 method: "POST",
                 body: JSON.stringify({password}),

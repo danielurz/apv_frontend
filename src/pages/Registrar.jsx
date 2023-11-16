@@ -20,7 +20,7 @@ function Registrar() {
 
 
     try {
-      const url = "http://localhost:4000/vet/"
+      const url = `${import.meta.env.VITE_API_URL}/vet/`
       const response = await fetch(url, {
         method: "POST",
         body: JSON.stringify({nombre,email,password}),
