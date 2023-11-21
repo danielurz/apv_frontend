@@ -18,8 +18,10 @@ $indico: #5514b6;
     margin: 100px auto 0 auto;
     width: 80%;
     display: flex;
+    gap: 50px;
     .enun {
-        width: 40%;
+        min-width: 426px;
+        width: 426px;
         p {
             font-family: 'Outfit' !important;
             font-weight: 600;
@@ -33,7 +35,9 @@ $indico: #5514b6;
     .formBox {
         width: 60%;
         form {
-            width: 70%;
+            width: 80%;
+            min-width: 350px;
+            max-width: 480px;
             margin: auto;
             .field {
                 margin-bottom: 15px;
@@ -75,3 +79,5 @@ $indico: #5514b6;
         }
     }
 }
+
+

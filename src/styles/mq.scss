@@ -1,0 +1,126 @@
+@media (max-width: 1040px) {
+    #Login, #Registrar, #OlvidePassword, #NuevoPassword {
+        width: 90%;
+        flex-wrap: wrap;
+        .enun {
+            width: 100%;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .formBox {
+            width: 100%;
+            form {
+                max-width: none;
+                width: 65%;
+                min-width: 450px;
+                .smtBtn {
+                    width: 100%;
+                }
+            }
+            nav {
+                margin-top: 30px;
+            }
+        }
+    }
+}
+
+
+@media (max-width: 560px) {
+    #Login, #Registrar, #OlvidePassword, #NuevoPassword {
+        margin-top: 50px;
+        .enun {
+            min-width: auto;
+            margin-bottom: 0;
+            p {
+                font-size: 3.5em;
+            }
+        }
+        .formBox {
+            form {
+                width: 90% !important;
+                min-width: auto !important;
+            }
+            nav {
+                margin-top: 20px;
+            }
+        }
+    }
+}
+
+
+// Private area
+
+
+@media (max-width: 1040px) {
+    #AdminPage {
+        & > h1 {
+            text-align: center;
+        }
+        .mainBox {
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+    }
+
+    #Pacientes {
+        overflow-y: auto;
+        width: 80%;
+        height: auto;
+        overflow: visible;
+    }
+}
+
+@media (max-width: 730px) {
+    #Form {
+        width: 100%;
+        min-width: auto;
+    }
+
+    #Pacientes {
+        width: 100%;
+        .paciente {
+            .actions {
+                position: static;
+                display: flex;
+                gap: 10px;
+                justify-content: end;
+                & > * {
+                    padding: 10px 20px;
+                }
+            }
+        }
+    }
+
+    #AdminNav {
+        justify-content: center;
+        gap: 20px;
+    }
+
+    #Perfil, #CambiarPassword {
+        width: 90%;
+        min-width: auto;
+    }
+
+    #Header {
+        .box {
+            flex-direction: column;
+            gap: 20px;
+            .title {
+                padding-right: 50px;
+            }
+            .routing {
+                align-self: center;
+            }
+        }
+    }
+}
+
+@media (min-width: 730px) {
+    #Header {
+        .box {
+            .menuIcon {
+                display: none;
+            }
+        }
+    }
+}

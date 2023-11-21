@@ -31,7 +31,7 @@ function AdministrarPacientes() {
 
   return (
     <div id="AdminPage">
-      <h1>Hola {userData.nombre}</h1>
+      <h1>Hello {userData.nombre}</h1>
       <div className="mainBox">
         <Formulario 
           paciente={paciente}
