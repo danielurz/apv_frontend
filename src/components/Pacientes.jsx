@@ -5,7 +5,7 @@ function Pacientes({pacientes,setPacientes,userData,setPaciente}) {
 
   const deletePaciente = async pacId => {
 
-    const confirmar = confirm("Desea eliminar este paciente?")
+    const confirmar = confirm("Do you want to delete this patient?")
     if (!confirmar) return
 
     try {
@@ -30,11 +30,11 @@ function Pacientes({pacientes,setPacientes,userData,setPaciente}) {
         return (
           <div key={_id} className="paciente">
             <div className="info">
-              <p><span>NOMBRE: </span>{nombre}</p>
-              <p><span>PROPIETARIO: </span>{propietario}</p>
-              <p><span>EMAIL DE CONTACTO: </span>{email}</p>
-              <p><span>FECHA DE ALTA: </span>{fecha}</p>
-              <p><span>SINTOMAS: </span>{sintomas}</p>
+              <p><span>NAME: </span>{nombre}</p>
+              <p><span>OWNER: </span>{propietario}</p>
+              <p><span>CONTACT EMAIL: </span>{email}</p>
+              <p><span>REGISTRATION DATE: </span>{fecha}</p>
+              <p><span>SYMPTOMS: </span>{sintomas}</p>
             </div>
             <div className="actions">
               <FaPen onClick={() => setPaciente({_id,nombre,propietario,email,fecha,sintomas})} className="edit"/>

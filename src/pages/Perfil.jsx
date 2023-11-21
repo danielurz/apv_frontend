@@ -14,12 +14,12 @@ function Perfil() {
 
         const VALUES = Object.values(veterinario)
         
-        if (!VALUES.length) return toast.error("No has hecho ningun cambio")
-        if (VALUES.includes("")) return toast.error("Todos los campos son obligatotios")
+        if (!VALUES.length) return toast.error("You haven't made any changes")
+        if (VALUES.includes("")) return toast.error("All fields are mandatory")
+
+        const toastLoading = toast.loading("Updating data...")
 
         try {
-            const toastLoading = toast.loading("Loging in...")
-            
             const url = `${import.meta.env.VITE_API_URL}/actualizar-datos/${userData._id}`
             const response = await fetch(url, {
                 method: "PUT",
@@ -38,6 +38,8 @@ function Perfil() {
             setVeterinario({})
         } catch (error) {
             toast.error(`Client Error: ${error.message}`)
+        } finally {
+            toast.dismiss(toastLoading)
         }
     }
 
@@ -46,22 +48,22 @@ function Perfil() {
         <AdminNav/>
         <div id="Perfil">
             <div className="hero">
-                <h1>Editar Perfil</h1>
-                <h3>Modifica tu <span>informacion aqui</span></h3>
+                <h1>Edit Profile</h1>
+                <h3>Modify your <span>information here</span></h3>
             </div>
             <form onSubmit={handleForm}>
                 <div className="field">
-                    <label>NOMBRE</label>
+                    <label>NAME</label>
                     <input type="text" defaultValue={userData?.nombre ?? ""}
                         onChange={e => setVeterinario({...veterinario, nombre: e.target.value})} />
                 </div>
                 <div className="field">
-                    <label>SITIO WEB</label>
+                    <label>WEBSITE</label>
                     <input type="text" defaultValue={userData?.web ?? ""}
                         onChange={e => setVeterinario({...veterinario, web: e.target.value})} />
                 </div>
                 <div className="field">
-                    <label>TELEFONO</label>
+                    <label>PHONE</label>
                     <input type="text" defaultValue={userData?.telefono ?? ""}
                         onChange={e => setVeterinario({...veterinario, telefono: e.target.value})} />
                 </div>
@@ -70,7 +72,7 @@ function Perfil() {
                     <input type="email" defaultValue={userData?.email ?? ""}
                         onChange={e => setVeterinario({...veterinario, email: e.target.value})} />
                 </div>
-                <input type="submit" value="GUARDAR CAMBIOS" className="smtBtn" />
+                <input type="submit" value="SAVE CHANGES" className="smtBtn" />
             </form>
         </div>
     </>

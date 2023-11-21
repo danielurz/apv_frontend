@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 function AdminNav() {
   return (
     <nav id="AdminNav">
-        <Link to="/admin/perfil">Editar perfil</Link>
-        <Link to="/admin/cambiar-password">Cambiar Password</Link>
+        <Link to="/admin/perfil">Edit profile</Link>
+        <Link to="/admin/cambiar-password">Update password</Link>
     </nav>
   )
 }

@@ -18,9 +18,11 @@ function CambiarPassword() {
         const newPassword = formdata.get("newPassword")
         const repeatPassword = formdata.get("repeatPassword")
 
-        if ([actualPassword,newPassword,repeatPassword].includes("")) return toast.error("Completa todos los campos")
-        if (newPassword.length < 6) return toast.error("El password es muy corto")
-        if (newPassword !== repeatPassword) return toast.error("Los passwords no coinciden")
+        if ([actualPassword, newPassword, repeatPassword].includes("")) return toast.error("Please fill in all fields")
+        if (newPassword.length < 6) return toast.error("The password is too short")
+        if (newPassword !== repeatPassword) return toast.error("Passwords do not match")
+
+        const toastLoading = toast.loading("Updating password...")
 
         try {
             const url = `${import.meta.env.VITE_API_URL}/vet/actualizar-password/${userData._id}`
@@ -40,6 +42,8 @@ function CambiarPassword() {
             
         } catch (error) {
             toast.error(`Client Error: ${error.message}`)
+        } finally {
+            toast.dismiss(toastLoading)
         }
 
     }
@@ -49,23 +53,23 @@ function CambiarPassword() {
         <AdminNav/>
         <div id="CambiarPassword">
             <div className="hero">
-                <h1>Cambiar Password</h1>
-                <h3>Modifica tu <span>password aqui</span></h3>
+                <h1>Update Password</h1>
+                <h3>Update your <span>password here</span></h3>
             </div>
             <form onSubmit={handleForm}>
                 <div className="field">
-                    <label>PASSWORD ACTUAL</label>
+                    <label>CURRENT PASSWORD</label>
                     <input type="password" name="actualPassword" />
                 </div>
                 <div className="field">
-                    <label>PASSWORD NUEVO</label>
+                    <label>NEW PASSWORD</label>
                     <input type="password" name="newPassword" />
                 </div>
                 <div className="field">
-                    <label>REPETIR PASSWORD</label>
+                    <label>REPEAT PASSWORD</label>
                     <input type="password" name="repeatPassword" />
                 </div>
-                <input type="submit" value="ACTUALIZAR PASSWORD" className="smtBtn" />
+                <input type="submit" value="UPDATE PASSWORD" className="smtBtn" />
             </form>
         </div>
     </>

@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom"
 import { toast } from "react-hot-toast"
-import {useNavigate} from "react-router-dom"
 import { useContext } from "react"
 import { Context } from "../context/Provider"
 
@@ -17,11 +16,11 @@ function Login() {
         const email = formData.get("email")
         const password = formData.get("password")
 
-        if ([email,password].includes("")) return toast.error("Completa ambos campos")
+        if ([email,password].includes("")) return toast.error("All fields are required")
+
+        const toastLoading = toast.loading("Loging in...")
 
         try {
-            const toastLoading = toast.loading("Loging in...")
-
             const url = `${import.meta.env.VITE_API_URL}/vet/login`
             const response = await fetch(url, {
                 method: "POST",
@@ -30,8 +29,6 @@ function Login() {
                     "Content-Type": "application/json"
                 }
             }).then(res => res.json())
-
-            toast.dismiss(toastLoading)
 
             if (response?.error) return toast.error(response.error)
             if (response?.serverError) return toast.error(`Server Error: ${response.serverError}`)
@@ -42,29 +39,31 @@ function Login() {
 
         } catch (error) {
             toast.error(`Client Error: ${error.message}`)
+        } finally {
+            toast.dismiss(toastLoading)
         }
     }
 
   return (
     <div id="Login">
         <div className="enun">
-            <p><span>Inicia Sesion y Administra</span> tus Pacientes</p>
+            <p><span>Log in and Manage</span> your Patients</p>
         </div>
         <div className="formBox">
             <form onSubmit={handleForm}>
                 <div className="field">
                     <label>EMAIL</label>
-                    <input type="email" placeholder="Email de registro" name="email"/>    
+                    <input type="email" placeholder="Registration Email" name="email"/>    
                 </div>
                 <div className="field">
                     <label>PASSWORD</label>
-                    <input type="password" placeholder="Tu password" name="password" />    
+                    <input type="password" placeholder="Your password" name="password" />    
                 </div>
-                <input className="smtBtn" type="submit" value="INICIAR SESION" />
+                <input className="smtBtn" type="submit" value="LOG IN" />
             </form>
             <nav>
-                <Link to="/registrar">¿No tienes una cuenta? Registrate aqui</Link>
-                <Link to="/olvide-password">¿Olvidaste tu password? Recuperala aqui</Link>
+                <Link to="/register">Don't have an account? Register here</Link>
+                <Link to="/forgot-password">Forgot your password? Recover it here</Link>
             </nav>
         </div>
     </div>

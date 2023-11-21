@@ -5,6 +5,7 @@ import { Toaster } from 'react-hot-toast'
 import { Provider } from './context/Provider.jsx'
 import './styles/auth.scss'
 import "./styles/admin.scss"
+import "./styles/mq.scss"
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(

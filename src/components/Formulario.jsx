@@ -13,7 +13,9 @@ function Formulario({setPacientes,pacientes,setPaciente,paciente}) {
 
         if (!paciente?._id) {
 
-            if (values.length < 5 || values.includes("")) return toast.error("Todos los campos son obligatorios")
+            if (values.length < 5 || values.includes("")) return toast.error("All fields are required")
+
+            const toastLoading = toast.loading("Adding patient...")
 
             try {
                 const url = `${import.meta.env.VITE_API_URL}/pac`
@@ -37,11 +39,15 @@ function Formulario({setPacientes,pacientes,setPaciente,paciente}) {
             } catch (error) {
                 console.log(error.message)
                 toast.error(`Client Error: ${error.message}`)
+            } finally {
+                toast.dismiss(toastLoading)
             }
        
         } else {
 
-            if (values.includes("")) return toast.error("Todos los campos son obligatorios")
+            if (values.includes("")) return toast.error("All fields are required")
+
+            const toastLoading = toast.loading("Updating patient...")
 
             try {
                 const url = `${import.meta.env.VITE_API_URL}/pac/${userData._id}`
@@ -69,6 +75,8 @@ function Formulario({setPacientes,pacientes,setPaciente,paciente}) {
                 
             } catch (error) {
                 toast.error(`Client Error: ${error.message}`)
+            } finally {
+                toast.dismiss(toastLoading)
             }
         }
     }
@@ -78,32 +86,32 @@ function Formulario({setPacientes,pacientes,setPaciente,paciente}) {
   return (
     <form id='Form' onSubmit={handleForm}>
         <div className="field">
-            <label>Nombre Mascota</label>
+            <label>Pet Name</label>
             <input type="text" value={paciente?.nombre ?? ""}
                 onChange={e => setPaciente({...paciente, nombre: e.target.value})} />
         </div>
         <div className="field">
-            <label>Nombre Propietario</label>
+            <label>Owner Name</label>
             <input type="text" value={paciente?.propietario ?? ""}
                 onChange={e => setPaciente({...paciente, propietario: e.target.value})} />
         </div>
         <div className="field">
-            <label>Email Propietario</label>
+            <label>Owner Email</label>
             <input type="email" value={paciente?.email ?? ""}
                 onChange={e => setPaciente({...paciente, email: e.target.value})} />
         </div>
         <div className="field">
-            <label>Fecha Alta</label>
+            <label>Registration Date</label>
             <input type="date" value={paciente?.fecha ?? ""}
                 onChange={e => setPaciente({...paciente, fecha: e.target.value})} />
         </div>
         <div className="field">
-            <label>Sintomas</label>
+            <label>Symptoms</label>
             <textarea type="text" value={paciente?.sintomas ?? ""}
                 onChange={e => setPaciente({...paciente, sintomas: e.target.value})} />
         </div>
         <input className="sbtBtn" type="submit" 
-            value={!paciente?._id ? "AGREGAR PACIENTE" : "ACTUALIZAR PACIENTE"} />
+            value={!paciente?._id ? "ADD PATIENT" : "UPDATE PATIENT"} />
     </form>
   )
 }

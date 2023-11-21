@@ -15,12 +15,12 @@ function ConfirmarCuenta() {
         .then(res => res.json())
         .then(response => {
           if (response?.error) return
-          if (response?.serverError) return toast.error(`Error en el servidor: ${response.error}`)
+          if (response?.serverError) return toast.error(`Server error: ${response.error}`)
           
           setIsValid(true)
         })
       } catch (error) {
-        toast.error(`Error en el cliente: ${error}`)
+        toast.error(`Client error: ${error}`)
       } 
     }
   }, [])
@@ -28,9 +28,9 @@ function ConfirmarCuenta() {
 
   return (
     <>
-      <h1>{!isValid ? "Token invalido" : "Cuenta confirmada exitosamente"}</h1>
-      {isValid && <Link to="/">Ingresa a tu cuenta</Link>}
-    </>  
+      <h1>{!isValid ? "Invalid token" : "Account successfully confirmed"}</h1>
+      {isValid && <Link to="/">Log into your account</Link>}
+    </>
   )
 }
 

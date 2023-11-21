@@ -7,21 +7,21 @@ function Registrar() {
   const handleForm = async e => {
     e.preventDefault()
 
-    const formdata = new FormData(e.currentTarget)
+    const form = e.currentTarget
+    const formdata = new FormData(form)
 
     const nombre = formdata.get("nombre")
     const email = formdata.get("email")
     const password = formdata.get("password")
     const rpassword = formdata.get("rpassword")
     
-    if ([nombre,email,password].includes("")) return toast.error("Todos los campos son obligatorios")
-    if (password.length < 6) return toast.error("El password debe ser de al menos 6 caracteres")
-    if (password !== rpassword) return toast.error("Los password no coinciden")
+    if ([nombre,email,password].includes("")) return toast.error("All fields are required")
+    if (password.length < 6) return toast.error("Password must be at least 6 characters long")
+    if (password !== rpassword) return toast.error("Passwords do not match")
 
+    const toastLoading = toast.loading("Creating user...")
 
     try {
-      const toastLoading = toast.loading("Creating user...")
-      
       const url = `${import.meta.env.VITE_API_URL}/vet/`
       const response = await fetch(url, {
         method: "POST",
@@ -31,50 +31,50 @@ function Registrar() {
         }
       }).then(res => res.json())
       
-      toast.dismiss(toastLoading)
-
       if (response?.error) return toast.error(response.error)
       if (response?.serverError) return toast.error(`Server error: ${response.serverError}`)
 
       toast.success(response.success)
-      e.target.reset()
-
+      form.reset()
+      
     } catch (error) {
-        toast.error(`Error al registrar: ${error}`)
+      toast.error(`Error registering:: ${error}`)
+    } finally {
+      toast.dismiss(toastLoading)
     }
   }
 
 
   return (
     <div id="Registrar">
-        <div className="enun">
-            <p><span>Crea tu Cuenta y Administra</span> tus Pacientes</p>
-        </div>
-        <div className="formBox">
-            <form onSubmit={handleForm}>
-                <div className="field">
-                    <label>NOMBRE</label>
-                    <input type="text" placeholder="Tu nombre" name="nombre" />    
-                </div>
-                <div className="field">
-                    <label>EMAIL</label>
-                    <input type="email" placeholder="Email de registro" name="email" />    
-                </div>
-                <div className="field">
-                    <label>PASSWORD</label>
-                    <input type="password" placeholder="Tu password"  name="password" />    
-                </div>
-                <div className="field">
-                    <label>RETEPTIR PASSWORD</label>
-                    <input type="password" placeholder="Repite tu password" name="rpassword" />    
-                </div>
-                <input className="smtBtn" type="submit" value="REGISTRARSE" />
-            </form>
-            <nav>
-                <Link to="/">¿Ya tienes una cuenta? Ingresa aqui</Link>
-                <Link to="/olvide-password">¿Olvidaste tu password? Recuperala aqui</Link>
-            </nav>
-        </div>
+      <div className="enun">
+        <p><span>Create your Account and Manage</span> your Patients</p>
+      </div>
+      <div className="formBox">
+        <form onSubmit={handleForm}>
+          <div className="field">
+            <label>NAME</label>
+            <input type="text" placeholder="Your name" name="nombre" />    
+          </div>
+          <div className="field">
+            <label>EMAIL</label>
+            <input type="email" placeholder="Registration email" name="email" />    
+          </div>
+          <div className="field">
+            <label>PASSWORD</label>
+            <input type="password" placeholder="Your password"  name="password" />    
+          </div>
+          <div className="field">
+            <label>REPEAT PASSWORD</label>
+            <input type="password" placeholder="Repeat your password" name="rpassword" />    
+          </div>
+          <input className="smtBtn" type="submit" value="REGISTER" />
+        </form>
+        <nav>
+          <Link to="/">Already have an account? Login here</Link>
+          <Link to="/forgot-password">Forgot your password? Recover it here</Link>
+        </nav>
+      </div>
     </div>
   )
 }

@@ -2,7 +2,7 @@
 function Footer() {
   return (
     <footer id="Footer">
-        <p>APV - Administrador de Pacientes de <span>Veterinaria</span></p>
+        <p>APV - Patient Manager of <span>Veterinary</span></p>
     </footer>
   )
 }

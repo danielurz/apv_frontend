@@ -19,9 +19,9 @@ function App() {
         {/* Area publica */}
         <Route path="/" element={<AuthLayout/>}>
             <Route index element={<Login/>}/>
-            <Route path="registrar" element={<Registrar/>}/>
+            <Route path="register" element={<Registrar/>}/>
             <Route path="confirmar-cuenta" element={<ConfirmarCuenta/>}/>
-            <Route path="olvide-password" element={<OlvidePassword/>}/>
+            <Route path="forgot-password" element={<OlvidePassword/>}/>
             <Route path="nuevo-password/:token" element={<NuevoPassword/>}/>
             <Route path="confirmar-cuenta/:token" element={<ConfirmarCuenta/>}/>
             <Route path="*" element={<h1>404 NOT FOUND</h1>}/>

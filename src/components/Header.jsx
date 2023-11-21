@@ -14,11 +14,11 @@ function Header() {
   return (
     <header id="Header">
         <div className="box">
-            <p>Administrador de Pacientes de <span>Veterinaria</span></p>
+            <p>Patient Manager of <span>Veterinary</span></p>
             <div className="routing">
-                <Link to="/admin">Pacientes</Link>
-                <Link to="/admin/perfil">Perfil</Link>
-                <button onClick={cerrarSesion}>Cerrar Sesion</button>
+                <Link to="/admin">Patients</Link>
+                <Link to="/admin/perfil">Profile</Link>
+                <button onClick={cerrarSesion}>Log out</button>
             </div>
         </div>
     </header>
